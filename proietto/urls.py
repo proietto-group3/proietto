@@ -18,11 +18,12 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from user.views import LoginView, logout_view
+from user.views import LoginView, logout_view, RegisterView
 
 urlpatterns = [
     path('admin/admin', admin.site.urls),
 
+    path("register", RegisterView.as_view(), name="register"),
     path("login", LoginView.as_view(), name="login"),
     path("logout", logout_view, name="logout"),
 

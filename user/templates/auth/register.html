@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/user/style.css' %}">{% endblock %}
+
+{% block title %} REGISTER {% endblock %}
+
+
+{% block body %}
+
+    <div class="page_title">REGISTER</div>
+
+    <div class="container">
+        <div class="form">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.media }}
+                {#        {%  crispy form %}#}
+                {{ form|crispy }}
+                <p class="btnwrap">
+                    <button type="submit" class="btn btn-outline-primary">REGISTER</button>
+                </p>
+
+            </form>
+        </div>
+    </div>
+{% endblock %}

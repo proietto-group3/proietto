@@ -2,7 +2,6 @@
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/web/style.css' %}">{% endblock %}
 
-THIS IS NAVBAR
 
 {% if user.is_authenticated %}
 
@@ -13,6 +12,7 @@ THIS IS NAVBAR
 {% else %}
 
     <a href="{% url "login" %}">LOGIN</a>
+    <a href="{% url "register" %}">REGISTER</a><br>
 
     <a href="{% url 'index' %}">HOME</a> <br><br>
 {% endif %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block body %}
+
+    {% if profile.photo %}
+
+        <img style="height:150px; width:150px; margin:auto"
+             src="{{ profile.photo.url }}" alt="Photo"><br>
+
+    {% else %}
+
+        <img style="height:150px; width:150px; margin:auto"
+             src="{% static 'images/default_photo.png' %}" alt="Photo"><br>
+
+    {% endif %}
+    Username: {{ profile.username }} <br>
+    E-mail: {{ profile.email }} <br>
+    {% if profile.website_url %}
+        <a class="btn btn-outline-primary btn-sm" role="button"
+           href="{{ profile.website_url }}"> <i class="fas fa-house-user"></i> </a>
+    {% endif %}
+    {% if profile.facebook_url %}
+        <a class="btn btn-outline-primary  btn-sm" role="button"
+           href="{{ profile.facebook_url }}"> <i class="fab fa-facebook"></i> </a>
+    {% endif %}
+
+    Joined date: {{ profile.date_joined }} <br>
+    Name: {{ profile.first_name }} <br>
+    Last name: {{ profile.last_name }} <br>
+    Last login: {{ profile.last_login }} <br>
+    About: {{ profile.about }} <br> <br>
+
+{% endblock %}

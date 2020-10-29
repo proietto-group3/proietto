@@ -4,9 +4,10 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 
 from user.forms.registerform import RegisterForm
+from user.models import Profile
 
 
 class RegisterView(CreateView):
@@ -48,3 +49,9 @@ def logout_view(request):
     logout(request)
     messages.success(request, message="Successfully logged out")
     return redirect("index")
+
+
+class ProfileView(DetailView):
+    model = Profile
+    template_name = 'profile/profile.html'
+

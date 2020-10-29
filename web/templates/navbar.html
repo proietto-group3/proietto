@@ -5,14 +5,14 @@
 
 {% if user.is_authenticated %}
 
-{#    HELLO <a href="{% url 'profile' user.username %}">{{ user.username }} </a>#}
+    HELLO <a href="{% url 'profile' user.username %}">{{ user.username }} </a>
     <a href="{% url "logout" %}">LOGOUT</a><br>
-    <a href="{% url 'index' %}">HOME</a> <br><br>
+    <a href="{% url 'index' %}">HOME</a> <br>
 
 {% else %}
 
     <a href="{% url "login" %}">LOGIN</a>
     <a href="{% url "register" %}">REGISTER</a><br>
 
-    <a href="{% url 'index' %}">HOME</a> <br><br>
+    <a href="{% url 'index' %}">HOME</a> <br>
 {% endif %}

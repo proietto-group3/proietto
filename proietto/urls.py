@@ -18,7 +18,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from user.views import LoginView, logout_view, ProfileView, RegisterView
+from user.views import EditProfileView, LoginView, logout_view, ProfileView, RegisterView
 
 urlpatterns = [
     path('admin/admin', admin.site.urls),
@@ -27,8 +27,11 @@ urlpatterns = [
     path("login", LoginView.as_view(), name="login"),
     path("logout", logout_view, name="logout"),
 
-    path('', include('web.urls')),
     path("<slug:slug>", ProfileView.as_view(), name='profile'),
+    path("<slug:slug>/edit_profile/", EditProfileView.as_view(), name='edit_profile'),
+
+    path('', include('web.urls')),
+
 
 
     # path("user/", include("user.urls")),

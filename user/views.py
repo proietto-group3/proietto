@@ -1,14 +1,19 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.mixins import LoginRequiredMixin as BaseLoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views import View
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, UpdateView
 
+from user.forms.editprofileform import EditProfileForm
 from user.forms.registerform import RegisterForm
 from user.models import Profile
 
+class LoginRequiredMixin(BaseLoginRequiredMixin):
+    def get_login_url(self):
+        return reverse("login")
 
 class RegisterView(CreateView):
     template_name = "auth/register.html"
@@ -55,3 +60,20 @@ class ProfileView(DetailView):
     model = Profile
     template_name = 'profile/profile.html'
 
+
+class EditProfileView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Profile
+    template_name = 'profile/edit_profile.html'
+    form_class = EditProfileForm
+
+    def get_success_url(self):
+        slug = self.kwargs['slug']
+        messages.success(request=self.request, message="Profile updated")
+        return reverse_lazy("profile", kwargs={'slug': slug})
+
+    def test_func(self):
+        user = self.get_object()
+        if self.request.user == user:
+            return True
+        # todo: DOROBIĆ MESSAGES JEŚLI PROBUJE SIĘ EDYTOWAC OBCY PROFIL
+        return False

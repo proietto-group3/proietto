@@ -24,12 +24,12 @@
     {% if profile.facebook_url %}
         <a class="btn btn-outline-primary  btn-sm" role="button"
            href="{{ profile.facebook_url }}"> <i class="fab fa-facebook"></i> </a>
-    {% endif %}
+    {% endif %} <br>
 
     Joined date: {{ profile.date_joined }} <br>
     Name: {{ profile.first_name }} <br>
     Last name: {{ profile.last_name }} <br>
     Last login: {{ profile.last_login }} <br>
-    About: {{ profile.about }} <br> <br>
+    About: {{ profile.about | safe}} <br> <br>
 
 {% endblock %}

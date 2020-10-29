@@ -9,9 +9,11 @@
     <a href="{% url "logout" %}">LOGOUT</a><br>
     <a href="{% url 'index' %}">HOME</a> <br>
 
+
 {% else %}
 
     <a href="{% url "login" %}">LOGIN</a>
+    <a href="{% url "logout" %}">LOGOUT</a><br>
     <a href="{% url "register" %}">REGISTER</a><br>
 
     <a href="{% url 'index' %}">HOME</a> <br>

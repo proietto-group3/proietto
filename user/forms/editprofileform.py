@@ -1,6 +1,6 @@
 from django import forms
-
 from user.models import Profile
+from user.choices import *
 
 from tinymce.widgets import TinyMCE
 
@@ -54,7 +54,13 @@ class EditProfileForm(forms.ModelForm):
         required=True,
     )
 
+    account_type = forms.ChoiceField(
+        choices=ACCOUNT_TYPE,
+        required=True,
+        widget=forms.Select(attrs={"class": "form-control form-control-lg pr-5 shadow p-1 mb-4 bg-white rounded"}),
+    )
+
 
     class Meta:
         model = Profile
-        fields = ['photo', 'first_name', 'last_name', 'facebook_url', 'website_url', 'about']
+        fields = ['photo', 'first_name', 'last_name', 'account_type', 'facebook_url', 'website_url', 'about']

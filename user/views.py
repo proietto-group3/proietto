@@ -75,5 +75,5 @@ class EditProfileView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         user = self.get_object()
         if self.request.user == user:
             return True
-        # todo: DOROBIĆ MESSAGES JEŚLI PROBUJE SIĘ EDYTOWAC OBCY PROFIL
+        # todo: DOROBIĆ MESSAGES LUB template/html JEŚLI PROBUJE SIĘ EDYTOWAC OBCY PROFIL
         return False

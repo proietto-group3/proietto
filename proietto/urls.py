@@ -18,14 +18,18 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from user.views import LoginView, logout_view
+
 urlpatterns = [
     path('admin/admin', admin.site.urls),
 
-    path('', include('web.urls')),
+    path("login", LoginView.as_view(), name="login"),
+    path("logout", logout_view, name="logout"),
 
-    path("user/", include("user.urls")),
-    # path("<slug:slug>", ProfileView.as_view(), name='profile'),
-    # path("<slug:slug>/edit_profile/", EditProfileInfoView.as_view(), name='edit_profile'),
+    path('', include('web.urls')),
+    # path("user/", include("user.urls")),
+
+
 ]
 
 if settings.DEBUG:

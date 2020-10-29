@@ -1,6 +1,18 @@
 {% load static %}
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/web/style.css' %}">{% endblock %}
+    <link rel="stylesheet" href="{% static 'css/web/style.css' %}">{% endblock %}
 
 THIS IS NAVBAR
-<a href="{% url 'index' %}">HOME</a><br>
+
+{% if user.is_authenticated %}
+
+{#    HELLO <a href="{% url 'profile' user.username %}">{{ user.username }} </a>#}
+    <a href="{% url "logout" %}">LOGOUT</a>
+    <a href="{% url 'index' %}">HOME</a> <br><br>
+
+{% else %}
+
+    <a href="{% url "login" %}">LOGIN</a>
+
+    <a href="{% url 'index' %}">HOME</a> <br><br>
+{% endif %}

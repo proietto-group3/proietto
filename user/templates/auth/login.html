@@ -9,23 +9,23 @@
 
 {% block body %}
 
-    <div class="page_title">SIGN IN</div>
+    <div class="page_title">LOGIN</div>
+
     <div class="container">
         <div class="form">
             <form action="" method="post">
                 {% csrf_token %}
-
-
                 <label for="username_input">USERNAME</label>
                 <input type="text" name="username" id="username_input"
-                       class="form-control form-control-lg pr-5 shadow p-1 mb-1 bg-white rounded">
+                       class="form-control form-control-lg pr-8 shadow p-1 mb-1 bg-white rounded"> <br>
                 <label for="password_input">PASSWORD</label>
                 <input type="password" name="password" id="password_input"
-                       class="form-control form-control-lg pr-5 shadow p-1 mb-1 bg-white rounded"><br>
+                       class="form-control form-control-lg pr-5 shadow p-1 mb-1 bg-white rounded"> <br> <br>
                 <p class="btnwrap">
-                    <button type="submit" class="btn btn-outline-primary">ZALOGUJ</button>
+                    <button type="submit" class="btn btn-outline-primary">LOGIN</button>
                 </p>
             </form>
         </div>
+
     </div>
 {% endblock %}

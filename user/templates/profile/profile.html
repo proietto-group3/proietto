@@ -6,35 +6,35 @@
 {% block title %} UESER: {{ profile.username }} {% endblock %}
 
 {% block body %}
+    <div class="container">
+        {% if profile.photo %}
+            {{ profile.photo.url }}
 
-    {% if profile.photo %}
-        {{ profile.photo.url }}
+            <img class="profile_photo"
+                 src="{{ profile.photo.url }}" alt="Photo"><br>
 
-        <img class="profile_photo"
-             src="{{ profile.photo.url }}" alt="Photo"><br>
+        {% else %}
 
-    {% else %}
+            <img class="profile_photo"
+                 src="{% static 'images/default_photo.png' %}" alt="Photo"><br>
 
-        <img class="profile_photo"
-             src="{% static 'images/default_photo.png' %}" alt="Photo"><br>
+        {% endif %}
+        Username: {{ profile.username }} <br>
 
-    {% endif %}
-    Username: {{ profile.username }} <br>
+        E-mail: {{ profile.email }} <br>
+        {% if profile.website_url %}
+            <a class="btn btn-outline-primary btn-sm" role="button"
+               href="{{ profile.website_url }}"> <i class="fas fa-house-user"></i> </a>
+        {% endif %}
+        {% if profile.facebook_url %}
+            <a class="btn btn-outline-primary  btn-sm" role="button"
+               href="{{ profile.facebook_url }}"> <i class="fab fa-facebook"></i> </a>
+        {% endif %} <br>
 
-    E-mail: {{ profile.email }} <br>
-    {% if profile.website_url %}
-        <a class="btn btn-outline-primary btn-sm" role="button"
-           href="{{ profile.website_url }}"> <i class="fas fa-house-user"></i> </a>
-    {% endif %}
-    {% if profile.facebook_url %}
-        <a class="btn btn-outline-primary  btn-sm" role="button"
-           href="{{ profile.facebook_url }}"> <i class="fab fa-facebook"></i> </a>
-    {% endif %} <br>
-
-    Joined date: {{ profile.date_joined }} <br>
-    Name: {{ profile.first_name }} <br>
-    Last name: {{ profile.last_name }} <br>
-    Last login: {{ profile.last_login }} <br>
-    About: {{ profile.about | safe}} <br> <br>
-
+        Joined date: {{ profile.date_joined }} <br>
+        Name: {{ profile.first_name }} <br>
+        Last name: {{ profile.last_name }} <br>
+        Last login: {{ profile.last_login }} <br>
+        About: {{ profile.about | safe }} <br> <br>
+    </div>
 {% endblock %}

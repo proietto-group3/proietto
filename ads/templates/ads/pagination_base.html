@@ -1,12 +1,15 @@
 {% load static %}
-{% block css %}<link rel="stylesheet" href="{% static 'css/ads/style.css' %}">{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/ads/style.css' %}">{% endblock %}
 
-{% if is_paginated %}
-    {% if page_obj.has_previous %}
-        <a href="?page={{ page_obj.previous_page_number }}">&laquo; PREV </a>
+<div class="pagination">
+    {% if is_paginated %}
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">&laquo; PREV </a>
+        {% endif %}
+        &nbsp; SITE NR {{ page_obj.number }} FROM {{ page_obj.paginator.num_pages }}. &nbsp;
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}"> NEXT &raquo;</a>
+        {% endif %}
     {% endif %}
-    SITE NR {{ page_obj.number }} FROM {{ page_obj.paginator.num_pages }}.
-    {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}"> NEXT &raquo;</a>
-    {% endif %}
-{% endif %}
+</div>

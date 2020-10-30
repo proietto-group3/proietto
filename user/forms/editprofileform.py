@@ -31,7 +31,7 @@ class EditProfileForm(forms.ModelForm):
 
     facebook_url = forms.URLField(
         label="Facebook",
-        max_length=500,
+        max_length=150,
         help_text="Your Facebook",
         widget=forms.URLInput(
             attrs={"class": "form-control form-control-lg pr-5 shadow p-2 mb-1 bg-white rounded"}), required=False,
@@ -40,7 +40,7 @@ class EditProfileForm(forms.ModelForm):
 
     website_url = forms.URLField(
         label="Your website",
-        max_length=500,
+        max_length=150,
         help_text="Your personal website",
         widget=forms.URLInput(attrs={"class": "form-control form-control-lg pr-5 shadow p-2 mb-1 bg-white rounded"}),
         required=False,

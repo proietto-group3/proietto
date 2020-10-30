@@ -11,19 +11,19 @@
     <div class="page_title"> EDIT PROFILE: {{ profile.username }} </div>
 
     <div class="container">
-    {##todo: wycentrować za pomocą css    #}
-    <div class="form">
-        <form method="post" enctype='multipart/form-data'>
+        {##todo: wycentrować za pomocą css    #}
+        <div class="form">
+            <form method="post" enctype='multipart/form-data'>
 
-            {% csrf_token %}
-               {{ form.media }}
-            {#        {%  crispy form %}#}
-            {{ form|crispy }}
+                {% csrf_token %}
+                {{ form.media }}
+                {#        {%  crispy form %}#}
+                {{ form|crispy }}
 
-            <p class="btnwrap">
-                <button type="submit" class="btn btn-outline-primary">SAVE CHANGES</button>
-            </p>
-        </form>
-    </div>
+                <p class="btnwrap">
+                    <button type="submit" class="btn btn-outline-primary">SAVE CHANGES</button>
+                </p>
+            </form>
+        </div>
     </div>
 {% endblock %}

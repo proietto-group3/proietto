@@ -7,26 +7,25 @@
 
 {% block body %}
 
-    <div class="page_title"> ALL ADS </div>
+    <div class="page_title"> ALL ADS</div>
+    <div class="container">
+        {% if object_list %}
+            {% for ad in object_list %}
+                <h1><a href="{{ ad.get_absolute_url }}"> {{ ad.title|upper }} </a> </h1>
+                {{ ad.author }} <br>
+                {{ ad.created_on }} <br>
+                {{ ad.description }} <br><br>
 
-    {% if object_list %}
-        {% for ad in object_list %}
+            {% endfor %}
 
-            {{ ad.title }} <br>
-            {{ ad.created_on }} <br>
-            {{ ad.author }} <br><br>
-
-
-        {% endfor %}
-
-    {% else %}
-        Nothing to see here :(((((
-    {% endif %}
-
+        {% else %}
+            Nothing to see here :(((((
+        {% endif %}
 
 
 
-{% include 'ads/pagination_base.html' %}
 
+        {% include 'ads/pagination_base.html' %}
 
-{%  endblock %}
+    </div>
+{% endblock %}

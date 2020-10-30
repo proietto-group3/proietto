@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/ads/style.css' %}">{% endblock %}
+
+{% block title %}ADS AD{% endblock %}
+
+{% block body %}
+    <div class="page_title"> ADD AD</div>
+
+
+    <div class="container">
+        <div class="form">
+            <form method="post" enctype='multipart/form-data'>
+                {% csrf_token %}
+                {{ form.media }}
+
+                {{ form.title|as_crispy_field }}
+                {{ form.image|as_crispy_field }}
+                {{ form.short_description|as_crispy_field }}
+                {{ form.long_description|as_crispy_field }}
+
+                <p class="btnwrap">
+                    <button type="submit" class="btn btn-outline-primary">ADD AD</button>
+                </p>
+            </form>
+
+        </div>
+    </div>
+
+
+{% endblock %}

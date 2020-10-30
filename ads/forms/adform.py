@@ -6,7 +6,7 @@ from ads.models import Ad
 
 
 
-class EditAdForm(forms.ModelForm):
+class AdForm(forms.ModelForm):
     title = forms.CharField(
         label="Title",
         max_length=120,
@@ -19,7 +19,7 @@ class EditAdForm(forms.ModelForm):
         label="Photo",
         help_text="We accept jpg, png, etc.",
         widget=forms.ClearableFileInput(
-            attrs={"class": "form-control form-control pr-3 shadow p-1 mb-1 bg-white rounded"}), required=True,
+            attrs={"class": "form-control form-control pr-3 shadow p-1 mb-1 bg-white rounded"}), required=False,
     )
 
     short_description = forms.CharField(

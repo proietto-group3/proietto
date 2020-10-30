@@ -33,7 +33,7 @@ urlpatterns = [
     path('', include('web.urls')),
     path('', include('ads.urls')),
 
-    # path("user/", include("user.urls")),
+
 ]
 
 if settings.DEBUG:

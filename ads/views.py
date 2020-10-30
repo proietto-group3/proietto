@@ -33,7 +33,7 @@ class EditAdView(LoginRequiredMixin, UpdateView):
         pk = self.kwargs["pk"]
         slug = self.kwargs['slug']
         messages.success(request=self.request, message="Edit success!")
-        return reverse_lazy("ad:ad_detail.html", kwargs={'pk': pk, 'slug': slug})
+        return reverse_lazy("ads:ad_detail", kwargs={'pk': pk, 'slug': slug})
 
 class AdDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Ad
@@ -66,4 +66,4 @@ class AdDetailView(DetailView):
     def get_success_url(self):
         pk = self.kwargs["pk"]
         slug = self.kwargs['slug']
-        return reverse_lazy('news:article_detail', kwargs={'pk': pk, 'slug': slug})
+        return reverse_lazy('ads:article_detail', kwargs={'pk': pk, 'slug': slug})

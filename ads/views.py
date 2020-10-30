@@ -1,9 +1,8 @@
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin as BaseLoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin as BaseLoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, ListView, UpdateView
-
+from django.views.generic import CreateView, DetailView, ListView, UpdateView, DeleteView
 
 from ads.models import Ad
 from ads.forms.adform import AdForm
@@ -35,6 +34,20 @@ class EditAdView(LoginRequiredMixin, UpdateView):
         slug = self.kwargs['slug']
         messages.success(request=self.request, message="Edit success!")
         return reverse_lazy("ad:ad_detail.html", kwargs={'pk': pk, 'slug': slug})
+
+class AdDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Ad
+    template_name = 'ads/ad_delete.html'
+
+    def test_func(self):
+        ad = self.get_object()
+        if self.request.user == ad.author:
+            return True
+        return False
+
+    def get_success_url(self):
+        messages.success(request=self.request, message="You successfuly deleted ad!")
+        return reverse_lazy('ads:all_ads_list')
 
 
 class AllAdsListView(ListView):

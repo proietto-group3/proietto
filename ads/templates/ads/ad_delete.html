@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/ads/style.css' %}">{% endblock %}
+
+{% block title %} DELETE {{ ad.title | upper }} {% endblock %}
+
+
+{% block body %}
+
+    <div class="page_title"> DELETE: {{ ad.title | upper }} </div>
+
+    <div class="container">
+
+        <form method="post" enctype='multipart/form-data'>
+            {% csrf_token %}
+            Do you want delete: {{ object.title }} <br>
+            ARE YOU SURE? <br>
+            <button type="submit" class="btn btn-outline-danger">DELETE</button>
+            <a class="btn btn-outline-secondary" href="{% url 'ads:ad_detail' pk=ad.pk slug=ad.slug %}">CANCEL </a>
+        </form>
+    </div>
+{% endblock %}

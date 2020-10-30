@@ -12,7 +12,7 @@
 
     <div class="container">
         {% if ad.image %}
-            <img class="ad_detail_image" src="{{ ad.image.url }}">
+            <img class="ad_detail_image" src="{{ ad.image.url }}" alt="Photo">
         {% else %}
             THERE IS NO IMAGE :(((
         {% endif %}
@@ -25,6 +25,9 @@
                 <a class="btn btn-outline-primary btn-sm" role="button"
                    href="{% url 'ads:edit_ad' pk=ad.pk slug=ad.slug %}"><i
                         class="far fa-edit"></i> edit</a>
+                <a class="btn btn-outline-primary btn-sm" role="button"
+               href="{% url 'ads:delete_ad' pk=ad.pk slug=ad.slug %}"><i
+                    class="far fa-trash-alt"></i> delete</a> <br>
             </small>
         {% endif %} <br>
 

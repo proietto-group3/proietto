@@ -8,7 +8,7 @@ urlpatterns = [
 
     path('all/', AllAdsListView.as_view(), name='all_ads_list'),
 
-    path('show/<int:pk>/<slug:slug>', AdDetailView.as_view(), name='ad_detail'),
+    path('show_ad/<int:pk>/<slug:slug>', AdDetailView.as_view(), name='ad_detail'),
 
 
 ]

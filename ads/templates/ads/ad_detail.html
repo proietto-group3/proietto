@@ -1,1 +1,51 @@
-szczegoly ogoszenia
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/ads/style.css' %}">
+{% endblock %}
+
+{% block title %} DETAILS: {{ ad.title | upper }}  {% endblock %}
+
+{% block body %}
+
+    <div class="page_title">DETAILS OF: {{ ad.title | upper }}</div>
+
+    <div class="container">
+        {% if ad.image %}
+            <img class="ad_detail_image" src="{{ ad.image.url }}">
+        {% else %}
+            THERE IS NO IMAGE :(((
+        {% endif %}
+        <br>
+
+        {{ ad.title | upper }} <br>
+
+        Date: {{ ad.created_on.date }} <br>
+        Time: {{ ad.created_on.time }} <br>
+        {{ ad.long_description | safe }}
+
+
+        <a href="{% url 'profile' ad.author %}">
+            {% if ad.author.photo %}
+                <img style="height:170px; width:170px; margin:auto"
+                     src="{{ ad.author.photo.url }}" alt="Photo">
+            {% else %}
+                <img style="height:170px; width:170px; margin:auto"
+                     src="{% static 'images/default_photo.png' %}" alt="Photo">
+            {% endif %}
+        </a>
+        <br>
+
+        Autor: <a href="{% url 'profile' ad.author %}"> {{ ad.author }} </a> <br>
+        {% if ad.author.website_url %}
+            <a class="btn btn-outline-primary btn-sm" role="button"
+               href="{{ ad.author.website_url }}"> <i class="fas fa-house-user"></i> </a>
+        {% endif %}
+        {% if ad.author.facebook_url %}
+            <a class="btn btn-outline-primary  btn-sm" role="button"
+               href="{{ ad.author.facebook_url }}"> <i class="fab fa-facebook"></i> </a>
+        {% endif %}
+
+
+    </div>
+{% endblock %}

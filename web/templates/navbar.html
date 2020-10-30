@@ -8,7 +8,9 @@
     HELLO <a href="{% url 'profile' user.username %}">{{ user.username }} </a>
     <a href="{% url "edit_profile" user.slug %}">EDIT PROFILE</a>
     <a href="{% url "logout" %}">LOGOUT</a><br>
-    <a href="{% url 'index' %}">HOME</a> <br>
+    <a href="{% url 'index' %}">HOME</a><br>
+    <a href="{% url 'ads:all_ads_list' %}">ALL ADS </a> <br>
+
 
 
 {% else %}
@@ -17,5 +19,6 @@
     <a href="{% url "logout" %}">LOGOUT</a>
     <a href="{% url "register" %}">REGISTER</a><br>
 
-    <a href="{% url 'index' %}">HOME</a> <br>
+    <a href="{% url 'index' %}">HOME</a><br>
+    <a href="{% url 'ads:all_ads_list' %}">ALL ADS </a> <br>
 {% endif %}

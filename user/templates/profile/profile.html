@@ -1,17 +1,21 @@
 {% extends "base.html" %}
 {% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/user/style.css' %}">{% endblock %}
 
+{% block title %} UESER: {{ profile.username }} {% endblock %}
 
 {% block body %}
 
     {% if profile.photo %}
+        {{ profile.photo.url }}
 
-        <img style="height:150px; width:150px; margin:auto"
+        <img class="profile_photo"
              src="{{ profile.photo.url }}" alt="Photo"><br>
 
     {% else %}
 
-        <img style="height:150px; width:150px; margin:auto"
+        <img class="profile_photo"
              src="{% static 'images/default_photo.png' %}" alt="Photo"><br>
 
     {% endif %}

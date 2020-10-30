@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/ads/style.css' %}">{% endblock %}
+
+{% block title %} ALL ADS {% endblock %}
+
+{% block body %}
+
+    <div class="page_title"> ALL ADS </div>
+
+    {% if object_list %}
+        {% for ad in object_list %}
+
+            {{ ad.title }} <br>
+            {{ ad.author }} <br>
+            {{ ad.created_on }} <br>
+
+
+        {% endfor %}
+        
+    {% else %}
+        Nothing to see here :(((((
+    {% endif %}
+
+
+
+
+
+
+
+{%  endblock %}

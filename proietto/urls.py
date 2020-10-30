@@ -31,12 +31,9 @@ urlpatterns = [
     path("<slug:slug>/edit_profile/", EditProfileView.as_view(), name='edit_profile'),
 
     path('', include('web.urls')),
-
-
+    path('', include('ads.urls')),
 
     # path("user/", include("user.urls")),
-
-
 ]
 
 if settings.DEBUG:

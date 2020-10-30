@@ -20,6 +20,14 @@
 
         {{ ad.title | upper }} <br>
 
+        {% if user.id == ad.author.id %}
+            <small>
+                <a class="btn btn-outline-primary btn-sm" role="button"
+                   href="{% url 'ads:edit_ad' pk=ad.pk slug=ad.slug %}"><i
+                        class="far fa-edit"></i> edit</a>
+            </small>
+        {% endif %} <br>
+
         Date: {{ ad.created_on.date }} <br>
         Time: {{ ad.created_on.time }} <br>
         {{ ad.long_description | safe }}
@@ -27,10 +35,10 @@
 
         <a href="{% url 'profile' ad.author %}">
             {% if ad.author.photo %}
-                <img style="height:170px; width:170px; margin:auto"
+                <img class="profile_photo"
                      src="{{ ad.author.photo.url }}" alt="Photo">
             {% else %}
-                <img style="height:170px; width:170px; margin:auto"
+                <img class="profile_photo"
                      src="{% static 'images/default_photo.png' %}" alt="Photo">
             {% endif %}
         </a>

@@ -19,3 +19,21 @@
     margin-top: 30px;
     margin-bottom: 30px;
 }
+
+
+div.form {
+    display: block;
+    text-align: center;
+}
+
+form {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    width: 70%;
+}
+
+.btnwrap {
+    text-align: center;
+}

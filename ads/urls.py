@@ -1,13 +1,14 @@
 from django.urls import path
-from ads.views import AdDetailView, AllAdsListView
+from ads.views import AdDetailView, AllAdsListView, EditAdView
 
 app_name = 'ads'
 
 urlpatterns = [
 
+    path('edit/<int:pk>/<slug:slug>', EditAdView.as_view(), name='edit_ad'),
+
 
     path('all/', AllAdsListView.as_view(), name='all_ads_list'),
-
     path('show_ad/<int:pk>/<slug:slug>', AdDetailView.as_view(), name='ad_detail'),
 
 

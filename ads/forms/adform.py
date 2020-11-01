@@ -1,5 +1,7 @@
 from django import forms
 
+from taggit.forms import TagWidget
+
 from tinymce.widgets import TinyMCE
 
 from ads.models import Ad
@@ -7,6 +9,9 @@ from ads.models import Ad
 
 
 class AdForm(forms.ModelForm):
+
+
+
     title = forms.CharField(
         label="Title",
         max_length=120,
@@ -21,6 +26,8 @@ class AdForm(forms.ModelForm):
         widget=forms.ClearableFileInput(
             attrs={"class": "form-control form-control pr-3 shadow p-1 mb-1 bg-white rounded"}), required=False,
     )
+
+
 
     short_description = forms.CharField(
         label="Short description",
@@ -41,4 +48,7 @@ class AdForm(forms.ModelForm):
 
     class Meta:
         model = Ad
-        fields = ('title', 'image',  'short_description', 'long_description')
+        fields = ('title', 'image', 'tags', 'short_description', 'long_description')
+        widgets = {
+            'tags': TagWidget(attrs={"class": "form-control form-control-lg pr-5 shadow p-1 mb-1 bg-white rounded"}),
+        }

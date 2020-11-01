@@ -7,29 +7,10 @@
 
 {% block body %}
 
-    <div class="page_title"> ALL ADS</div>
-    <div class="container">
-        {% if object_list %}
-            {% for ad in object_list %}
-                <h3><a href="{{ ad.get_absolute_url }}"> {{ ad.title|upper }} </a></h3>
+    <div class="page_title"> ALL Ads</div>
 
-                {% for tag in ad.tags.all %}
-                    <a href="{% url 'ads:tag_ad_list' tag.slug %}" class="badge badge-info">{{ tag }}</a>
-                {% endfor %} <br>
-                {{ ad.author }} <br>
-                {{ ad.created_on }} <br>
-                {{ ad.short_description }} <br><br>
+    {% include 'ads/ads_list_base.html' %}
 
-            {% endfor %}
+    {% include 'ads/pagination_base.html' %}
 
-        {% else %}
-            Nothing to see here :(((((
-        {% endif %}
-
-
-
-
-        {% include 'ads/pagination_base.html' %}
-
-    </div>
 {% endblock %}

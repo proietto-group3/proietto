@@ -5,8 +5,8 @@ from django.urls import reverse
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView, UpdateView, DeleteView
 
-from ads.models import Ad
 from ads.forms.adform import AdForm
+from ads.models import Ad
 
 
 class LoginRequiredMixin(BaseLoginRequiredMixin):
@@ -35,6 +35,7 @@ class EditAdView(LoginRequiredMixin, UpdateView):
         slug = self.kwargs['slug']
         messages.success(request=self.request, message="Edit success!")
         return reverse_lazy("ads:ad_detail", kwargs={'pk': pk, 'slug': slug})
+
 
 class AdDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Ad
@@ -80,6 +81,5 @@ class TagAdListView(ListView):
         return super().get_queryset(*args, **kwargs).filter(
             tags__slug=self.kwargs['slug'])
 
-    def articlecategory(self):
-        return get_object_or_404(Ad, slug=self.kwargs['slug'])
-
+    def ad_tag(self):
+        return get_object_or_404(Ad.tags, slug=self.kwargs['slug'])

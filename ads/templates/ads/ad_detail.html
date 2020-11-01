@@ -21,7 +21,7 @@
         {{ ad.title | upper }} <br>
 
         {% for tag in ad.tags.all %}
-            <a href="{% url 'ads:tag_ad_list' tag.slug %}" class="badge badge-info" >{{ tag | lower }}</a>
+            <a href="{% url 'ads:tag_ad_list' tag.slug %}" class="badge badge-info">{{ tag | lower }}</a>
         {% endfor %} <br>
 
         {% if user.id == ad.author.id %}
@@ -30,8 +30,8 @@
                    href="{% url 'ads:edit_ad' pk=ad.pk slug=ad.slug %}"><i
                         class="far fa-edit"></i> edit</a>
                 <a class="btn btn-outline-primary btn-sm" role="button"
-               href="{% url 'ads:delete_ad' pk=ad.pk slug=ad.slug %}"><i
-                    class="far fa-trash-alt"></i> delete</a> <br>
+                   href="{% url 'ads:delete_ad' pk=ad.pk slug=ad.slug %}"><i
+                        class="far fa-trash-alt"></i> delete</a> <br>
             </small>
         {% endif %}
 

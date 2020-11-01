@@ -1,8 +1,8 @@
 from django import forms
-from user.models import Profile
-from user.choices import *
-
 from tinymce.widgets import TinyMCE
+
+from user.choices import *
+from user.models import Profile
 
 
 class EditProfileForm(forms.ModelForm):
@@ -59,7 +59,6 @@ class EditProfileForm(forms.ModelForm):
         required=True,
         widget=forms.Select(attrs={"class": "form-control form-control-lg pr-5 shadow p-1 mb-4 bg-white rounded"}),
     )
-
 
     class Meta:
         model = Profile

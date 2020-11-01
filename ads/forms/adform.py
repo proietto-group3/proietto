@@ -1,17 +1,11 @@
 from django import forms
-
 from taggit.forms import TagWidget
-
 from tinymce.widgets import TinyMCE
 
 from ads.models import Ad
 
 
-
 class AdForm(forms.ModelForm):
-
-
-
     title = forms.CharField(
         label="Title",
         max_length=120,
@@ -26,8 +20,6 @@ class AdForm(forms.ModelForm):
         widget=forms.ClearableFileInput(
             attrs={"class": "form-control form-control pr-3 shadow p-1 mb-1 bg-white rounded"}), required=False,
     )
-
-
 
     short_description = forms.CharField(
         label="Short description",

@@ -21,7 +21,7 @@
         {{ ad.title | upper }} <br>
 
         {% for tag in ad.tags.all %}
-            <a href="#" class="badge badge-info" >{{ tag }}</a>
+            <a href="{% url 'ads:tag_ad_list' tag.slug %}" class="badge badge-info" >{{ tag }}</a>
         {% endfor %} <br>
 
         {% if user.id == ad.author.id %}

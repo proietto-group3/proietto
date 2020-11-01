@@ -20,6 +20,10 @@
 
         {{ ad.title | upper }} <br>
 
+        {% for tag in ad.tags.all %}
+            <a href="#" class="badge badge-info" >{{ tag }}</a>
+        {% endfor %}
+
         {% if user.id == ad.author.id %}
             <small>
                 <a class="btn btn-outline-primary btn-sm" role="button"

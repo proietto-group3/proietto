@@ -11,7 +11,11 @@
     <div class="container">
         {% if object_list %}
             {% for ad in object_list %}
-                <h3><a href="{{ ad.get_absolute_url }}"> {{ ad.title|upper }} </a> </h3>
+                <h3><a href="{{ ad.get_absolute_url }}"> {{ ad.title|upper }} </a></h3>
+
+                {% for tag in ad.tags.all %}
+                    <a href="#" class="badge badge-info">{{ tag }}</a>
+                {% endfor %}
                 {{ ad.author }} <br>
                 {{ ad.created_on }} <br>
                 {{ ad.short_description }} <br><br>

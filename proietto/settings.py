@@ -136,7 +136,10 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 MEDIA_URL = '/mediafiles/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 
-# want django-taggit to be CASE-INSENSITIVE when looking up existing tags
+# Want django-taggit to be CASE-INSENSITIVE when looking up existing tags
 TAGGIT_FORCE_LOWERCASE = True
 TAGGIT_STOPWORDS = True
 TAGGIT_CASE_INSENSITIVE = True
+
+# Hitcount configuration
+HITCOUNT_KEEP_HIT_ACTIVE = {'seconds': 1}

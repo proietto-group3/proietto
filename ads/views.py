@@ -8,6 +8,7 @@ from django.views.generic import CreateView, DetailView, ListView, UpdateView, D
 from ads.forms.adform import AdForm
 from ads.models import Ad
 
+from hitcount.views import HitCountDetailView
 
 class LoginRequiredMixin(BaseLoginRequiredMixin):
     def get_login_url(self):
@@ -61,9 +62,10 @@ class AllAdsListView(ListView):
         return self.model.objects.all().order_by('-pk')
 
 
-class AdDetailView(DetailView):
+class AdDetailView(HitCountDetailView):
     template_name = 'ads/ad_detail.html'
     model = Ad
+    count_hit = True
 
     def get_success_url(self):
         pk = self.kwargs["pk"]

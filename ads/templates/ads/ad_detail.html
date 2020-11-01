@@ -1,5 +1,7 @@
 {% extends "base.html" %}
+{% load hitcount_tags %}
 {% load static %}
+
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/ads/style.css' %}">
 {% endblock %}
@@ -37,6 +39,9 @@
 
         Date: {{ ad.created_on.date }} <br>
         Time: {{ ad.created_on.time }} <br>
+
+        Views (total): {{ hitcount.total_hits }} <br>
+        Views (last 10 mins): {% get_hit_count for ad within "minutes=10" %} <br>
         {{ ad.long_description | safe }}
 
 

@@ -10,5 +10,4 @@ urlpatterns = [
     path("logout", logout_view, name="logout"),
     path("change_password", ChangePassword.as_view(), name="change_password"),
 
-
 ]

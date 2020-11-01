@@ -3,6 +3,7 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.urls import reverse
 
+from taggit.managers import TaggableManager
 from tinymce.models import HTMLField
 
 
@@ -19,6 +20,7 @@ class Ad(Created):
     image = models.ImageField(blank=True, null=True, upload_to='ad_images/')
     short_description = models.TextField(null=False, blank=False, max_length=300)
     long_description = HTMLField(blank=False, null=False, max_length=1500)
+    tags = TaggableManager()
     slug = models.SlugField(null=False, unique=False)
 
     def save(self, *args, **kwargs):

@@ -30,3 +30,6 @@ class Ad(Created):
 
     def get_absolute_url(self):
         return reverse('ads:ad_detail', kwargs={'pk': self.pk, 'slug': self.slug})
+
+    def ad_tags(self):
+        return ", \n".join([x.name for x in self.tags.all()])

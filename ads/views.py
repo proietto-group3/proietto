@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin as BaseLoginRequiredMixin, UserPassesTestMixin
+from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView, UpdateView, DeleteView
@@ -67,3 +68,18 @@ class AdDetailView(DetailView):
         pk = self.kwargs["pk"]
         slug = self.kwargs['slug']
         return reverse_lazy('ads:article_detail', kwargs={'pk': pk, 'slug': slug})
+
+
+class TagAdListView(ListView):
+    template_name = 'ads/tag_ad_list.html'
+    model = Ad
+    queryset = Ad.objects.order_by('-pk')
+    paginate_by = 5
+
+    def get_queryset(self, *args, **kwargs):
+        return super().get_queryset(*args, **kwargs).filter(
+            tags__slug=self.kwargs['slug'])
+
+    def articlecategory(self):
+        return get_object_or_404(Ad, slug=self.kwargs['slug'])
+

@@ -3,18 +3,18 @@
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/ads/style.css' %}">{% endblock %}
 
-{% block title %} ALL ADS {% endblock %}
+{% block title %} ALL TAG ... ADS {% endblock %}
 
 {% block body %}
 
-    <div class="page_title"> ALL ADS</div>
+    <div class="page_title"> ALL TAG ... ADS </div>
     <div class="container">
         {% if object_list %}
             {% for ad in object_list %}
                 <h3><a href="{{ ad.get_absolute_url }}"> {{ ad.title|upper }} </a></h3>
 
                 {% for tag in ad.tags.all %}
-                    <a href="{% url 'ads:tag_ad_list' tag.slug %}" class="badge badge-info">{{ tag }}</a>
+                    <a href="#" class="badge badge-info">{{ tag }}</a>
                 {% endfor %} <br>
                 {{ ad.author }} <br>
                 {{ ad.created_on }} <br>

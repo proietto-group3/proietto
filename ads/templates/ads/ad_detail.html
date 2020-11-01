@@ -22,7 +22,7 @@
 
         {% for tag in ad.tags.all %}
             <a href="#" class="badge badge-info" >{{ tag }}</a>
-        {% endfor %}
+        {% endfor %} <br>
 
         {% if user.id == ad.author.id %}
             <small>
@@ -33,7 +33,7 @@
                href="{% url 'ads:delete_ad' pk=ad.pk slug=ad.slug %}"><i
                     class="far fa-trash-alt"></i> delete</a> <br>
             </small>
-        {% endif %} <br>
+        {% endif %}
 
         Date: {{ ad.created_on.date }} <br>
         Time: {{ ad.created_on.time }} <br>

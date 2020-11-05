@@ -12,7 +12,8 @@ from ads.models import Ad
 
 class LoginRequiredMixin(BaseLoginRequiredMixin):
     def get_login_url(self):
-        return reverse("login")
+        messages.warning(request=self.request, message="You must login first.")
+        return reverse("user:login")
 
 
 class AddAdView(LoginRequiredMixin, CreateView):

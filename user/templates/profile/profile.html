@@ -28,8 +28,8 @@
         {% endif %}
         {% if profile.facebook_url %}
             <a class="btn btn-outline-primary  btn-sm" role="button"
-               href="{{ profile.facebook_url }}"> <i class="fab fa-facebook"></i> </a>
-        {% endif %} <br>
+               href="{{ profile.facebook_url }}"> <i class="fab fa-facebook"></i> </a><br>
+        {% endif %}
 
         Joined date: {{ profile.date_joined }} <br>
         Name: {{ profile.first_name }} <br>
@@ -37,9 +37,9 @@
         Last login: {{ profile.last_login }} <br>
         About: {{ profile.about | safe }} <br> <br>
 
-        USER ADS:
+        USER ADS: <br>
         {% for ad in user_ads %}
-            {{ ad.title }} <br>
+            <a href="{{ ad.get_absolute_url }}"> {{ ad.title }} <br></a>
 
         {% endfor %}
 

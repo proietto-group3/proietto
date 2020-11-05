@@ -8,6 +8,7 @@ from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.views.generic import CreateView, DetailView, UpdateView, FormView
 
+from ads.models import Ad
 from user.forms.editprofileform import EditProfileForm
 from user.forms.registerform import RegisterForm
 from user.models import Profile
@@ -63,6 +64,11 @@ def logout_view(request):
 class ProfileView(DetailView):
     model = Profile
     template_name = 'profile/profile.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user_ads'] = Ad.objects.filter(author__slug=self.kwargs['slug']).order_by('-pk')
+        return context
 
 
 class EditProfileView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):

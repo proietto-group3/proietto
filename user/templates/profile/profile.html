@@ -36,5 +36,13 @@
         Last name: {{ profile.last_name }} <br>
         Last login: {{ profile.last_login }} <br>
         About: {{ profile.about | safe }} <br> <br>
+
+        USER ADS:
+        {% for ad in user_ads %}
+            {{ ad.title }} <br>
+
+        {% endfor %}
+
+
     </div>
 {% endblock %}

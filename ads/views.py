@@ -67,10 +67,16 @@ class AdDetailView(HitCountDetailView):
     model = Ad
     count_hit = True
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['similar_ads'] = self.object.tags.similar_objects()[:4]
+        return context
+
     def get_success_url(self):
         pk = self.kwargs["pk"]
         slug = self.kwargs['slug']
         return reverse_lazy('ads:article_detail', kwargs={'pk': pk, 'slug': slug})
+
 
 
 class TagAdListView(ListView):

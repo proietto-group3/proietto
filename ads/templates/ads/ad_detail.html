@@ -63,9 +63,13 @@
         {% endif %}
         {% if ad.author.facebook_url %}
             <a class="btn btn-outline-primary  btn-sm" role="button"
-               href="{{ ad.author.facebook_url }}"> <i class="fab fa-facebook"></i> </a>
+               href="{{ ad.author.facebook_url }}"> <i class="fab fa-facebook"></i> </a> <br>
         {% endif %}
 
+        SIMILAR ADS (by tags): <br>
+        {% for ad in similar_ads %}
+            {{ ad.title }}
+    {% endfor %}
 
     </div>
 {% endblock %}

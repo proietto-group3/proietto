@@ -15,6 +15,7 @@ from user.models import Profile
 
 class LoginRequiredMixin(BaseLoginRequiredMixin):
     def get_login_url(self):
+        messages.warning(request=self.request, message="You must login first!")
         return reverse("user:login")
 
 

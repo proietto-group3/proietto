@@ -1,11 +1,22 @@
 <div class="container">
+
+
     {% if object_list %}
+
+        MOST COMMON TAGS:
+        {% for tag in common_tags %}
+            <a href="{% url 'ads:tag_ad_list' tag.slug %}"
+               class="badge badge-secondary">{{ tag | lower }}</a>
+        {% endfor %} <br> <br>
+
+
         {% for ad in object_list %}
 
             <h3><a href="{{ ad.get_absolute_url }}"> {{ ad.title|upper }} </a></h3>
 
             {% for tag in ad.tags.all %}
-                <a href="{% url 'ads:tag_ad_list' tag.slug %}" class="badge badge-info">{{ tag | lower }}</a>
+                <a href="{% url 'ads:tag_ad_list' tag.slug %}"
+                   class="badge badge-secondary">{{ tag | lower }}</a>
             {% endfor %} <br>
 
             {{ ad.author }} <br>

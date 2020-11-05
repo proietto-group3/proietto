@@ -3,12 +3,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin as BaseLoginRequiredMi
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, ListView, UpdateView, DeleteView
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView
+from hitcount.views import HitCountDetailView
 
 from ads.forms.adform import AdForm
 from ads.models import Ad
 
-from hitcount.views import HitCountDetailView
 
 class LoginRequiredMixin(BaseLoginRequiredMixin):
     def get_login_url(self):
@@ -61,6 +61,11 @@ class AllAdsListView(ListView):
     def get_queryset(self):
         return self.model.objects.all().order_by('-pk')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['common_tags'] = Ad.tags.most_common()[:10]
+        return context
+
 
 class AdDetailView(HitCountDetailView):
     template_name = 'ads/ad_detail.html'
@@ -78,7 +83,6 @@ class AdDetailView(HitCountDetailView):
         return reverse_lazy('ads:article_detail', kwargs={'pk': pk, 'slug': slug})
 
 
-
 class TagAdListView(ListView):
     template_name = 'ads/tag_ad_list.html'
     model = Ad
@@ -91,3 +95,8 @@ class TagAdListView(ListView):
 
     def ad_tag(self):
         return get_object_or_404(Ad.tags, slug=self.kwargs['slug'])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['common_tags'] = Ad.tags.most_common()[:10]
+        return context

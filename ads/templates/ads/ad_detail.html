@@ -65,10 +65,11 @@
             <a class="btn btn-outline-primary  btn-sm" role="button"
                href="{{ ad.author.facebook_url }}"> <i class="fab fa-facebook"></i> </a> <br>
         {% endif %}
+    <br>
 
         SIMILAR ADS (by tags): <br>
         {% for ad in similar_ads %}
-            {{ ad.title }}
+            <a href="{{ ad.get_absolute_url }}"> {{ ad.title }} </a> <br>
     {% endfor %}
 
     </div>

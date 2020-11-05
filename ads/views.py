@@ -69,7 +69,7 @@ class AdDetailView(HitCountDetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['similar_ads'] = self.object.tags.similar_objects()[:4]
+        context['similar_ads'] = self.object.tags.similar_objects()[:5]
         return context
 
     def get_success_url(self):

@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+<div class="columns is-mobile" xmlns:color="http://www.w3.org/1999/xhtml">
+
+<div class="column is-one-quarter">
+    <aside class="menu">
+        <h1 class="title is-2">Messages</h1>
+        <ul style="overflow-y: scroll; height: 500px" class="menu-list">
+
+{% if user.is_authenticated %}
+{% for message in messages %}
+
+            <a class="{% if active_direct == message.user.username %}is-active{% endif %}" href="{% url 'incoming' message.user.username %}">
+    <div class="box">
+    <article class="media">
+        <div class="media-left">
+            <figure class="image is-64x64">
+                {% if message.user.profile.picture %}
+                    <img src="{{ message.user.profile.picture.url }}" alt="Placeholder image">
+                {% else %}
+                    <img src="{% static 'images/default_photo.png' %}" alt="Placeholder image">
+                {% endif % }
+            </figure>
+        </div>
+        <div class="media-content">
+            <div class="content">
+                <p><strong>{{ message.user.profile.first_name }} {{ message.user.profile.last_name }}</strong><small>{{ message.user.username }} </small></p>
+            </div>
+
+            <div class="content">
+                {% if message.unread %}
+                <p style="font-weight": bold; color: blue;">
+                    <i class="material-icons">mark_chat_unread</i> {{ message.unread }}
+                </p>
+                {% endif %}
+            </div>
+        </div>
+    </article>
+    </div>
+                </a>
+{% endif %}
+
+     </ul>
+</aside>
+    <br>
+    <a href="{% url 'usersearch' %}" class="button is-success">New message</a>
+
+</div>
+    <div class="column">
+        <div style="overflow-y:scroll; height: 500px">
+
+{% for inbox in incoming %}
+            <div class="box"><article class="media"><div class="media-left"></div><div class="media-content"><div class="content">
+                <p><strong>{{ inbox.sender.profile.first_name }} {{ inbox.user.profile.last_name }}</strong><small>{{ inbox.sender.username }}</small>on: <strong> <small>{{ inbox.date|date:'N d G:i'}}</small></strong>
+            </p>
+                {{inbox.body}}
+            </div>
+            </div>
+            </article>
+            </div>
+{% endfor %}
+
+        </div>
+
+<form role="form" method="POST" action="{% url 'send_message' %}">
+    {% csrf_token %}
+    <article class="media">
+    <figure class="media-left">
+        <p class="image is-64x64">
+            <img src=" ">
+        </p>
+    </figure>
+    <div class="media-content">
+        <input type="hidden" name="to_user" value="{{ active_incoming }}">
+        <div class="field">
+            <p class="control">
+                <textarea class="textarea" name="body" placeholder="Add a comment..."></textarea>
+            </p>
+        </div>
+        <nav class="level">
+            <div class="level-left">
+                <div class="level-item">
+                    <button type="submit" name="action" class="button is-info">Send</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</article>
+</form>
+
+
+    </div>
+    </div>
+{% endfor %}
+{% endif %}
+{% endblock %}

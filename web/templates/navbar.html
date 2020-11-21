@@ -6,13 +6,13 @@
 {% if user.is_authenticated %}
 
     HELLO <a href="{% url 'profile' user.username %}">{{ user.username }} </a>
+    <a href="{% url 'inbox:inbox' %}">INBOX</a>
     <a href="{% url "edit_profile" user.slug %}">EDIT PROFILE</a>
     <a href="{% url "user:change_password" %}">CHANGE PASSWORD</a>
     <a href="{% url "user:logout" %}">LOGOUT</a><br>
     <a href="{% url 'index' %}">HOME</a><br>
     <a href="{% url 'ads:add_ad' %}"> ADD AD </a>
     <a href="{% url 'ads:all_ads_list' %}">ALL ADS </a> <br>
-
 
 
 {% else %}
@@ -24,3 +24,6 @@
     <a href="{% url 'index' %}">HOME</a><br>
     <a href="{% url 'ads:all_ads_list' %}">ALL ADS </a> <br>
 {% endif %}
+
+
+

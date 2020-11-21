@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'web',
     'user',
     'ads',
+    'inbox',
 
     'crispy_forms',
     'tinymce',

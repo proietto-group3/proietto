@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/admin', admin.site.urls),
 
     path("user/", include("user.urls")),
+    path("inbox/", include("inbox.urls")),
     path("<slug:slug>", ProfileView.as_view(), name='profile'),
     path("<slug:slug>/edit_profile/", EditProfileView.as_view(), name='edit_profile'),
 
